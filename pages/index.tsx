@@ -1,21 +1,19 @@
 import styled from '@emotion/styled';
 import Head from 'next/head';
-import Link from 'next/link';
 import Image from 'next/image';
 
 import fivespotLogo from '../public/logo.png';
 import Container from '@/components/common/Container';
 import Title from '@/components/common/Title';
 import GradientText from '@/components/common/GradientText';
+import Button from '@/components/common/Button';
 
 const LogoBox = styled.div`
   width: 300px;
-  margin-bottom: 20px;
+  margin: 0 auto 20px;
 `;
 
 const FlexBox = styled.div`
-  width: 100%;
-  height: 100%;
   display: flex;
   flex-flow: row nowrap;
   justify-content: center;
@@ -29,8 +27,11 @@ export default function Home() {
       <Head>
         <title>파이브스팟 봄소풍</title>
       </Head>
-      <FlexBox>
-        <Title level={1}>
+      <FlexBox style={{ width: '100%', height: '100%', flexFlow: 'column' }}>
+        <Title
+          level={1}
+          style={{ marginBottom: '100px' }}
+        >
           <LogoBox>
             <Image
               src={fivespotLogo}
@@ -47,6 +48,17 @@ export default function Home() {
           </GradientText>
           🌼
         </Title>
+        <FlexBox style={{ marginTop: '40px' }}>
+          <Button
+            href='/team'
+            style={{ marginRight: '10px' }}
+          >
+            팀 짜기
+          </Button>
+          <Button href='/program/song'>
+            프로그램
+          </Button>
+        </FlexBox>
       </FlexBox>
     </Container>
   );
