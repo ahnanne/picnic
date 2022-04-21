@@ -14,9 +14,9 @@ export default function Team() {
       </Head>
       <Button
         href='/'
-        style={{ width: '180px', height: '50px' }}
+        style={{ width: '180px' }}
       >
-        ⬅ 메인으로
+        메인으로
       </Button>
       {/* TODO: nav */}
     </Container>

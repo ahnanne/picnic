@@ -36,6 +36,7 @@ export default function Home() {
             <Image
               src={fivespotLogo}
               alt='파이브스팟 로고'
+              placeholder='blur'
             />
           </LogoBox>
           🌼
