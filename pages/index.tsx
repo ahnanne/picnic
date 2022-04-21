@@ -40,7 +40,7 @@ export default function Home() {
           </LogoBox>
           🌼
           <GradientText
-            startColor='#9867f0'
+            startColor='#f3b933'
             endColor='#F36E33'
             style={{ display: 'inline', margin: '0 10px' }}
           >
