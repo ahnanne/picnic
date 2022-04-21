@@ -26,6 +26,7 @@ const Text = styled.p(({
   backgroundClip: 'text',
   WebkitBackgroundClip: 'text', 
   fontSize: size ? fontSize[size] + 'px' : 'inherit',
+  fontWeight: 'inherit',
   color: 'transparent',
 }));
 

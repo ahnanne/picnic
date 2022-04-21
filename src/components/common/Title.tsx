@@ -7,7 +7,7 @@ type Props = {
 };
 
 const Heading = styled.h1`
-  font-size: 30px;
+  font-size: 60px;
   font-weight: 700;
 `;
 
