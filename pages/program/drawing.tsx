@@ -1,9 +1,9 @@
-import Container from '@/components/common/Container';
+import Layout from '@/components/layout/Layout';
 
 const Drawing = () => (
-  <Container>
-    ..
-  </Container>
+  <Layout title='프로그램2'>
+    ...
+  </Layout>
 );
 
 export default Drawing;

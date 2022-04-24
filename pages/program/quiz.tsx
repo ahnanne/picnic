@@ -1,9 +1,9 @@
-import Container from '@/components/common/Container';
+import Layout from '@/components/layout/Layout';
 
 const Quiz = () => (
-  <Container>
-    ..
-  </Container>
+  <Layout title='프로그램3'>
+    ...
+  </Layout>
 );
 
 export default Quiz;
