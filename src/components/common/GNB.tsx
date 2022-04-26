@@ -32,16 +32,20 @@ const menuList: Array<MenuType> = [
     label: '팀 짜기',
   },
   {
+    href: '/program/introduce',
+    label: '자기소개',
+  },
+  {
     href: '/program/song',
-    label: '프로그램1',
+    label: '음악시간',
   },
   {
     href: '/program/drawing',
-    label: '프로그램2',
+    label: '미술시간',
   },
   {
     href: '/program/quiz',
-    label: '프로그램3',
+    label: '체육시간',
   },
 ];
 
