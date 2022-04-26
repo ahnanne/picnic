@@ -1,10 +1,12 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useCallback, useRef } from 'react';
 import styled from '@emotion/styled';
 
 import Button from '@/components/common/Button';
 import Input from '@/components/common/Input';
+import Title from '@/components/common/Title';
 
 import getRandomTeam, { TeamType } from 'utils/getRandomTeam';
+import JSConfetti from 'js-confetti';
 
 const Container = styled.div`
   position: relative;
@@ -54,7 +56,7 @@ const ResultBox = styled.div`
 
   & dl {
     width: 100%;
-    height: 100%;
+    height: calc(100% - 40px);
     overflow: auto;
   }
 
@@ -74,11 +76,28 @@ export default function Team() {
   const [ numberInput, setNumberInput ] = useState('1');
   const [ result, setResult ] = useState<Array<TeamType> | null>(null);
   
+  const jsConfettiRef = useRef<JSConfetti>();
+
   const init = () => {
     setMemberInput('');
     setNumberInput('1');
     setResult(null);
   };
+
+  const handleConfetti = useCallback(() => {
+    if (jsConfettiRef.current) {
+      jsConfettiRef.current.addConfetti({
+        // emojis: [ '🦄', '🌈', '⚡️', '🧡', '✨', '💫', '🌸' ],
+        confettiRadius: 10,
+        emojiSize: 50,
+        confettiNumber: 40,
+      });
+    }
+  }, [ jsConfettiRef ]);
+
+  useEffect(() => {
+    jsConfettiRef.current = new JSConfetti();
+  }, []);
 
   return (
     <Layout title='팀 짜기'>
@@ -100,6 +119,10 @@ export default function Team() {
             {result ? (
               <>
                 <ResultBox>
+                  <Title
+                    level={1}
+                    style={{ fontSize: '20px', marginBottom: '10px' }}
+                  >축하드립니다^^🎉</Title>
                   <dl>
                     {result.map(({ teamName, members }, idx) =>
                       <React.Fragment key={idx}>
@@ -144,6 +167,7 @@ export default function Team() {
                     });
 
                     setResult(res);
+                    handleConfetti();
                   }}
                   style={{ display: 'block', margin: '30px auto' }}
                 >
