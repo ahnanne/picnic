@@ -1,10 +1,10 @@
-import { useState } from 'react';
+import React, { useState } from 'react';
 import styled from '@emotion/styled';
 
 import Button from '@/components/common/Button';
 import Input from '@/components/common/Input';
 
-import getRandomTeam from 'utils/getRandomTeam';
+import getRandomTeam, { TeamType } from 'utils/getRandomTeam';
 
 const Container = styled.div`
   position: relative;
@@ -45,53 +45,112 @@ const CloseButton = styled.button`
   }
 `;
 
+const ResultBox = styled.div`
+  width: 100%;
+  height: calc(100% - 60px);
+  padding: 20px;
+  font-size: 18px;
+  line-height: 24px;
+
+  & dl {
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+  }
+
+  & dt {
+    font-weight: 700;
+  }
+  & dt:not(:first-of-type) {
+    margin-top: 14px;
+  }
+`;
+
 import Layout from '@/components/layout/Layout';
 
 export default function Team() {
   const [ open, setOpen ] = useState(false);
   const [ memberInput, setMemberInput ] = useState('');
   const [ numberInput, setNumberInput ] = useState('1');
-  const [ result, setResult ] = useState<any | null>(null); // TODO: 랜덤 팀 result 타입 정의
-
-  // console.log(getRandomTeam({
-  //   members: '안예인,홍길동,헬로키티,a님,b님,c님,d님',
-  //   teamMemberNumber: 3,
-  // }));
+  const [ result, setResult ] = useState<Array<TeamType> | null>(null);
+  
+  const init = () => {
+    setMemberInput('');
+    setNumberInput('1');
+    setResult(null);
+  };
 
   return (
     <Layout title='팀 짜기'>
       <Container>
         {open && (
           <Popup>
-            <CloseButton onClick={() => setOpen(false)}>
+            <CloseButton
+              onClick={() => {
+                init();
+                setOpen(false);
+              }}
+            >
               <span
                 role='presentation'
                 title='닫기'
                 aria-label='닫기'
               >&times;</span>
             </CloseButton>
-            <Input
-              id='members-input'
-              label='인원 명단'
-              value={memberInput}
-              setValue={setMemberInput}
-              subText={`쉼표(,)로 구분하여 입력 (예: '안예인,홍길동')`}
-              style={{ marginTop: '20px' }}
-            />
-            <Input
-              id='total-input'
-              label='한 팀당 인원'
-              value={numberInput}
-              setValue={setNumberInput}
-              subText='숫자만 입력 가능'
-              style={{ marginTop: '20px' }}
-            />
-            <Button
-              onClick={() => console.log('todo')}
-              style={{ display: 'block', margin: '30px auto' }}
-            >
-              팀 짜기!
-            </Button>
+            {result ? (
+              <>
+                <ResultBox>
+                  <dl>
+                    {result.map(({ teamName, members }, idx) =>
+                      <React.Fragment key={idx}>
+                        <dt>
+                          {teamName}
+                        </dt>
+                        <dd>
+                          {members.map(({ name }) => name).join(', ')}
+                        </dd>
+                      </React.Fragment>,
+                    )}
+                  </dl>
+                </ResultBox>
+                <Button
+                  onClick={init}
+                  style={{ display: 'block', margin: '0 auto' }}
+                >다시 짜기!</Button>
+              </>
+            ) : (
+              <>
+                <Input
+                  id='members-input'
+                  label='인원 명단'
+                  value={memberInput}
+                  setValue={setMemberInput}
+                  subText={`쉼표(,)로 구분하여 입력 (예: '안예인,홍길동')`}
+                  style={{ marginTop: '20px' }}
+                />
+                <Input
+                  id='total-input'
+                  label='한 팀당 인원'
+                  value={numberInput}
+                  setValue={setNumberInput}
+                  subText='숫자만 입력 가능'
+                  style={{ marginTop: '20px' }}
+                />
+                <Button
+                  onClick={() => {
+                    const res = getRandomTeam({
+                      members: memberInput,
+                      teamMemberNumber: Number(numberInput),
+                    });
+
+                    setResult(res);
+                  }}
+                  style={{ display: 'block', margin: '30px auto' }}
+                >
+                  팀 짜기!
+                </Button>
+              </>
+            )}
           </Popup>
         )}
         <p>팀 짜기가 고민 된다면!?</p>
