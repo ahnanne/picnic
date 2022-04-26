@@ -27,10 +27,10 @@ export default function Home() {
       <Head>
         <title>파이브스팟 봄소풍</title>
       </Head>
-      <FlexBox style={{ width: '100%', height: '100%', flexFlow: 'column' }}>
+      <FlexBox style={{ width: '100%', height: '100vh', flexFlow: 'column' }}>
         <Title
           level={1}
-          style={{ marginBottom: '100px' }}
+          style={{ margin: '100px' }}
         >
           <LogoBox>
             <Image
