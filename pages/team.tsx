@@ -87,10 +87,10 @@ export default function Team() {
   const handleConfetti = useCallback(() => {
     if (jsConfettiRef.current) {
       jsConfettiRef.current.addConfetti({
-        // emojis: [ '🦄', '🌈', '⚡️', '🧡', '✨', '💫', '🌸' ],
+        emojis: [ '🦄', '🌈', '⚡️', '🧡', '✨', '💫', '🌸' ],
         confettiRadius: 10,
-        emojiSize: 50,
-        confettiNumber: 40,
+        emojiSize: 30,
+        confettiNumber: 60,
       });
     }
   }, [ jsConfettiRef ]);
