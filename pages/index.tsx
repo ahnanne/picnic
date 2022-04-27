@@ -56,7 +56,7 @@ export default function Home() {
           >
             팀 짜기
           </Button>
-          <Button href='/program/song'>
+          <Button href='/program/introduce'>
             프로그램
           </Button>
         </FlexBox>
