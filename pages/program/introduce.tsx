@@ -2,6 +2,7 @@ import styled from '@emotion/styled';
 
 import Layout from '@/components/layout/Layout';
 import Program from '@/components/common/Program';
+import Text from '@/components/common/Text';
 import bonobono from '@/assets/bonobono.jpg';
 
 const Container = styled.div`
@@ -19,11 +20,6 @@ const GameRule = styled.div`
     }
   }
 `;
-
-const Text = styled.p`
-  font-size: 24px;
-`;
-
 
 const Introduce = () => (
   <Layout title='자기소개'>

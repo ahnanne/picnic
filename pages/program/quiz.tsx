@@ -3,6 +3,7 @@ import styled from '@emotion/styled';
 import Layout from '@/components/layout/Layout';
 import Program from '@/components/common/Program';
 import Title from '@/components/common/Title';
+import Text from '@/components/common/Text';
 import olaf from '@/assets/olaf.jpg';
 
 const Container = styled.div`
@@ -19,10 +20,6 @@ const GameRule = styled.div`
       margin-left: 20px;
     }
   }
-`;
-
-const Text = styled.p`
-  font-size: 24px;
 `;
 
 /** https://sblog.i-scream.co.kr/lyn0430/9219?sso=ok  */
