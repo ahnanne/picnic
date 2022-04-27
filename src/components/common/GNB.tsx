@@ -10,6 +10,7 @@ const Nav = styled.nav`
   width: 100vw;
   height: 80px;
   padding: 20px;
+  overflow-x: auto;
 `;
 
 const Menu = styled.span(({ isCurrent }: { isCurrent: boolean }) => ({

@@ -27,7 +27,7 @@ export default function Home() {
       <Head>
         <title>파이브스팟 봄소풍</title>
       </Head>
-      <FlexBox style={{ width: '100%', height: '100vh', flexFlow: 'column' }}>
+      <FlexBox style={{ width: '100%', height: '100vh', flexFlow: 'column nowrap' }}>
         <Title
           level={1}
           style={{ margin: '100px' }}
@@ -49,10 +49,10 @@ export default function Home() {
           </GradientText>
           🌼
         </Title>
-        <FlexBox style={{ marginTop: '40px' }}>
+        <FlexBox style={{ marginTop: '40px', flexWrap: 'wrap' }}>
           <Button
             href='/team'
-            style={{ marginRight: '10px' }}
+            style={{ margin: '10px' }}
           >
             팀 짜기
           </Button>
