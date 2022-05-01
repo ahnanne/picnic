@@ -1,8 +1,10 @@
 import React, { useState, useEffect, useCallback, useRef } from 'react';
 import styled from '@emotion/styled';
 
+import Layout from '@/components/layout/Layout';
 import Button from '@/components/common/Button';
 import Input from '@/components/common/Input';
+import CheckBox from '@/components/common/CheckBox';
 import Title from '@/components/common/Title';
 
 import getRandomTeam, { TeamType } from 'utils/getRandomTeam';
@@ -68,12 +70,11 @@ const ResultBox = styled.div`
   }
 `;
 
-import Layout from '@/components/layout/Layout';
-
 export default function Team() {
   const [ open, setOpen ] = useState(false);
   const [ memberInput, setMemberInput ] = useState('');
   const [ numberInput, setNumberInput ] = useState('1');
+  const [ isFair, setIsFair ] = useState(false);
   const [ result, setResult ] = useState<Array<TeamType> | null>(null);
   
   const jsConfettiRef = useRef<JSConfetti>();
@@ -82,6 +83,7 @@ export default function Team() {
     setMemberInput('');
     setNumberInput('1');
     setResult(null);
+    setIsFair(false);
   };
 
   const handleConfetti = useCallback(() => {
@@ -175,11 +177,22 @@ export default function Team() {
                   subText='숫자만 입력 가능'
                   style={{ marginTop: '20px' }}
                 />
+                <CheckBox
+                  id='is-fair'
+                  label='인원 고르게 나누기'
+                  checked={isFair}
+                  handleChecked={() => {
+                    setIsFair(!isFair);
+                  }}
+                  subText='설정하신 한 팀당 인원과 다를 수 있습니다.'
+                  style={{ marginTop: '20px' }}
+                />
                 <Button
                   onClick={() => {
                     const res = getRandomTeam({
                       members: memberInput,
                       teamMemberNumber: Number(numberInput),
+                      isFair,
                     });
 
                     setResult(res);

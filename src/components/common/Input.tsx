@@ -42,7 +42,7 @@ const Input = ({ id, label, value, setValue, subText, style }: Props) => (
     <Label htmlFor={id}>{label}</Label>
 
     <CustomInput
-      type="text"
+      type='text'
       id={id}
       name={id}
       value={value}
