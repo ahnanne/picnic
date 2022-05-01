@@ -99,6 +99,22 @@ export default function Team() {
     jsConfettiRef.current = new JSConfetti();
   }, []);
 
+  // console.log(getRandomTeam({
+  //   members: 'a,b,c,d,e,f,g,h',
+  //   teamMemberNumber: 7,
+  //   isFair: true,
+  // }));
+  // console.log(getRandomTeam({
+  //   members: 'a,b,c,d,e,f,g,h,i,j,k,l,m',
+  //   teamMemberNumber: 4,
+  //   isFair: true,
+  // }));
+  // console.log(getRandomTeam({
+  //   members: 'a,b,c,d,e,f,g,h,i,j,k,l,m,n',
+  //   teamMemberNumber: 4,
+  //   isFair: true,
+  // }));
+
   return (
     <Layout title='팀 짜기'>
       <Container>
