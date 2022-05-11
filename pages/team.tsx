@@ -27,7 +27,7 @@ const Popup = styled.div`
   transform: translate(-50%, 0);
   z-index: 10;
   width: 100%;
-  height: 340px;
+  min-height: 340px;
   max-width: 500px;
   background-color: #fff;
   box-shadow: rgba(17, 12, 46, 0.15) 0px 48px 100px 0px;
