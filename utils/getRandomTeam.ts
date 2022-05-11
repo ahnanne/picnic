@@ -5,12 +5,14 @@ const generateRandomKey = () => {
 };
 
 /* -------------------------------------------------------------------------- */
+type MemberType = {
+  name: string;
+  key: number;
+};
+
 export type TeamType = {
   teamName: string;
-  members: {
-    name: string;
-    key: number;
-  }[];
+  members: Array<MemberType>;
 };
 
 type Params = {
@@ -33,30 +35,16 @@ const getRandomTeam = ({ members, teamMemberNumber, isFair }: Params) => {
   const totalTeam = Math.ceil(memberList.length / teamMemberNumber);
   let teamList = new Array(totalTeam).fill(0).map((_, idx) => membersWithKey.slice(idx * teamMemberNumber, ((idx + 1) * teamMemberNumber)));
 
-  if (isFair && teamList.length > 1) {
-    const lastIndex = teamList.length - 1;
-    let pointer = lastIndex - 1;
-
+  if (isFair) {
     /** '균등'한 상태의 기준: 마지막 팀의 인원 수와 동일한 인원 수를 가진 팀이 존재하는 상태 -> hasSameLength */
-    const hasSameLength = () => teamList.some((v, i) => {
-      if (i === lastIndex) {
-        return false;
-      }
-      return v.length === teamList[lastIndex].length;
+    teamList = new Array(totalTeam).fill(0);
+    teamList = teamList.map((_) => {
+      const temp: Array<MemberType> = [];
+      return temp;
     });
-
-    while (!hasSameLength()) {
-      const elem = teamList[pointer].pop();
-
-      if (elem) {
-        teamList[lastIndex].push(elem);
-      }
-      else {
-        break;
-      }
-
-      pointer = pointer === 0 ? lastIndex - 1 : pointer - 1;
-    }
+    membersWithKey.forEach((member, idx) => {
+      teamList[idx % totalTeam].push(member);
+    });
   }
 
   const randomTeam: Array<TeamType> = teamList.map((team, idx) => ({
